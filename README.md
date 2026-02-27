@@ -8,7 +8,7 @@
 
 ## 📸 示例预览
 
-[![简历预览](./demo/template.png)](./demo/TEMPLATE.pdf)
+[![简历预览](./demo/TEMPLATE.png)](./demo/TEMPLATE.pdf)
 
 👉 **[点击此处查看高清 PDF 示例](./demo/TEMPLATE.pdf)**
 
@@ -23,8 +23,8 @@
 │   ├── template_avatar.png   # 示例头像图片（推荐使用 1:1 或接近正方形的比例）
 │   └── template_logo.png     # 页面背景水印图片（透明度已在代码中默认设为 10%）
 └── demo/                     # 预览示例文件夹
-    ├── template.png          # 编译后的简历预览长图
-    └── template.pdf          # 编译后的简历 PDF 文件
+    ├── TEMPLATE.png          # 编译后的简历预览长图
+    └── TEMPLATE.pdf          # 编译后的简历 PDF 文件
 
 ```
 
