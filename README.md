@@ -8,9 +8,9 @@
 
 ## 📸 示例预览
 
-[![简历预览](./demo/template.png)](./demo/template.pdf)
+[![简历预览](./demo/template.png)](./demo/TEMPLATE.pdf)
 
-👉 **[点击此处查看高清 PDF 示例](./demo/template.pdf)**
+👉 **[点击此处查看高清 PDF 示例](./demo/TEMPLATE.pdf)**
 
 ---
 
