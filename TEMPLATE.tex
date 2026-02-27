@@ -1,0 +1,249 @@
+\documentclass[10.5pt, a4paper]{ctexart}
+% 10.5pt 为基准字号，相当于正文使用“五号”字
+
+% =========================================================
+% 宏包加载区 (Packages)
+% =========================================================
+\usepackage[
+    left=1.5cm,   % 左边距
+    right=1.5cm,  % 右边距
+    top=1.5cm,    % 上边距
+    bottom=1.5cm  % 下边距
+]{geometry}       % 页面几何尺寸
+
+\usepackage{tikz}         % 绘图支持
+\usepackage{xcolor}       % 颜色支持
+\usepackage{eso-pic}      % 页面背景/前景，用于添加全局水印
+\usepackage{graphicx}     % 插入图片
+\usepackage{lastpage}     % 获取总页数
+\usepackage{fancyhdr}     % 自定义页眉页脚
+\usepackage{enumitem}     % 自定义列表格式
+\usepackage{hyperref}     % 超链接支持
+\usepackage{titlesec}     % 自定义标题样式
+\usepackage{fontawesome5} % 字体图标（邮箱、电话等图标）
+\usepackage[export]{adjustbox} % 图像微调，用于对齐头像
+
+% =========================================================
+% 颜色与全局样式配置 (Colors & Global Styles)
+% =========================================================
+% 将颜色统一设定为第一份简历的蓝色系
+\definecolor{blue}{RGB}{0, 102, 204}
+\definecolor{winered}{RGB}{128, 0, 0}
+
+\linespread{1.15} % 全局行距设置为 1.15 倍
+
+% =========================================================
+% 超链接设置 (Hyperlinks)
+% =========================================================
+\hypersetup{
+    colorlinks=true,       % 开启链接颜色显示，取消默认的丑陋方框
+    linkcolor=winered,   % 内部超链接颜色
+    urlcolor=winered     % 网址超链接颜色
+}
+
+% =========================================================
+% 标题样式设置 (Section Titles)
+% =========================================================
+% 使用 \Large 对应 14pt（四号字）
+\titleformat{\section}
+    {\Large\bfseries\color{blue}}   % 格式：四号大小、加粗、主题蓝色
+    {}                              % 序号标签（此处留空）
+    {0em}                           % 序号与标题间距
+    {\uppercase}                    % 英文大写
+    [\vspace{-1.0em}\rule{\textwidth}{1pt}] % 标题下方添加贯穿横线并微调间距
+
+\titlespacing{\section}
+    {0pt}   % 左缩进
+    {0.1em} % 标题上方间距
+    {0.1em} % 标题下方间距
+
+% =========================================================
+% 列表与表格样式 (Lists & Tables)
+% =========================================================
+% 配置 itemize 的间距，使其更紧凑
+\setlist[itemize]{
+    leftmargin=*,   % 左对齐
+    nosep,          % 取消默认多余间距
+    topsep=0.2em,   % 列表上方间距
+    itemsep=0.1em,  % 列表项间距
+    parsep=0em      % 段落间距
+}
+
+\setlength{\tabcolsep}{2mm}        % 表格单元格水平间距
+\renewcommand{\arraystretch}{1.05} % 表格行高比例
+
+% =========================================================
+% 页眉页脚与页码设置 (Pagination)
+% =========================================================
+\pagestyle{fancy}
+\fancyhf{}                  % 清空默认页眉页脚
+\setlength{\footskip}{20pt} % 页脚距离正文的高度
+\renewcommand{\headrulewidth}{0pt} % 取消页眉横线
+
+% =========================================================
+% 水印设置 (Watermark)
+% =========================================================
+\AddToHook{shipout/foreground}{
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[
+        opacity=0.1,    % 透明度 10%
+        inner sep=0pt   % 节点内边距为 0
+    ] at (current page.center) {
+        % 水印图片，宽度设为页面宽度的 70%
+        \includegraphics[width=0.7\paperwidth]{images/template_logo.png}
+    };
+  \end{tikzpicture}
+}
+
+% =========================================================
+% 正文开始 (Begin Document)
+% =========================================================
+\begin{document}
+
+% ---------------------------------------------------------
+% 个人信息部分
+% ---------------------------------------------------------
+\noindent
+\begin{minipage}[t]{0.7\textwidth}
+    \vspace*{-2.5em}
+    \begin{center}
+        % 使用 \LARGE 对应 16pt（三号字）
+        {\LARGE\bfseries\color{blue} 张 三} \\[0.5em]
+        \faEnvelope \enspace \textbf{zhangsan\_dev@gmail.com} \\
+        \faHome \enspace \textbf{福建厦门} \quad
+        \faBirthdayCake \enspace \textbf{2001.02} \quad
+        \faMobile \enspace \textbf{123-4567-8910（微信同号）}
+    \end{center}
+\end{minipage}%
+% ---------------------------------------------------------
+% 头像部分
+% ---------------------------------------------------------
+\begin{minipage}[t]{0.3\textwidth}
+    \vspace*{-2.5em} % 向上偏移，使其与左侧的个人信息对齐
+    \begin{flushright} % 头像靠最右侧对齐
+        % \adjustbox 用于微调头像的基线和垂直位置
+        \adjustbox{valign=t, raise=-0.8em}{
+            \includegraphics[width=2.5cm, height=2.5cm, keepaspectratio]{images/template_avatar.png}
+        }
+    \end{flushright}
+\end{minipage}
+\vspace{-1.6em}
+
+% ---------------------------------------------------------
+% 教育背景部分
+% ---------------------------------------------------------
+\section*{教育背景}
+\vspace{-0.5em}
+
+\noindent
+\begin{tabular}{@{}p{5cm}@{}} 
+    \textbf{厦门大学（985，本科）} 
+\end{tabular}
+\begin{tabular}{@{}p{9cm}@{}} 
+    软件工程（专业前10\%，\textbf{推免}至本校） 
+\end{tabular}
+\hfill\textcolor{blue}{\textbf{2019.09 \textasciitilde{} 2023.06}}
+
+\noindent
+\begin{tabular}{@{}p{5cm}@{}} 
+    \textbf{厦门大学（985，硕士）} 
+\end{tabular}
+\begin{tabular}{@{}p{9cm}@{}} 
+    电子信息（研究方向：\textbf{多智能体协同与RAG架构}） 
+\end{tabular}
+\hfill\textcolor{blue}{\textbf{2023.09 \textasciitilde{} 2026.06}}
+
+\begin{itemize}
+    \item \textbf{学术成果}：英语六级573分；以第一作者在\textbf{ACL 2024}、\textbf{AAAI 2023}各发表文章一篇。
+    \item \textbf{荣誉奖项}：国家奖学金 (2020、2024)、厦大一等奖学金 (2021、2025)、中国研究生AI创新大赛一等奖。
+\end{itemize}
+
+% ---------------------------------------------------------
+% 实习经历部分
+% ---------------------------------------------------------
+\section*{实习经历}
+\vspace{-0.5em}
+
+\noindent
+\begin{tabular}{@{}p{8cm}@{}}
+    \textcolor{blue}{\textbf{北京ABC科技有限公司}}
+\end{tabular}
+\begin{tabular}{@{}p{6cm}@{}}
+    大模型算法实习生
+\end{tabular}
+\hfill\textcolor{blue}{\textbf{2025.05 \textasciitilde{} 2025.08}}
+
+\par\noindent
+\textbf{项目介绍：}负责自研千亿级 LLM 在垂直领域的逻辑进化，通过全链路偏好对齐提升模型的诊断推理能力。 \\
+1）\textbf{对齐训练（核心）：}基于 \textbf{TRL} 深度优化 \textbf{DPO} 对齐管线，引入 \textbf{Iterative DPO} 策略实现多轮策略博弈；通过动态调整 \textbf{KL 散度系数} 严控策略漂移，并设计 \textbf{Reward Model}，解决模型幻觉问题，增强回复的深度；同时针对医疗场景复杂长尾问题，结合 \textbf{Rejection Sampling} 机制对高质量回答进行过滤与二次微调，显著提升了模型在临床推理中的鲁棒性。 \\
+2）\textbf{数据工程：}利用 \textbf{Tagging} 过滤千万级原始语料，结合 \textbf{Self-Instruct} 策略合成高质量医疗指令数据。 \\
+3）\textbf{推理部署：}主导 \textbf{vLLM} 生产环境部署，利用 \textbf{Prefix Caching} 与 \textbf{PD分离} 策略优化 \textbf{TTFT}，提升吞吐效率。 \\
+\textbf{项目成果：}医疗逻辑评测得分提升 \textbf{22\%}，幻觉率降低 \textbf{18\%}，单卡吞吐较 Baseline 提升 \textbf{2.8 倍}。
+
+\noindent
+\begin{tabular}{@{}p{8cm}@{}}
+    \textcolor{blue}{\textbf{上海一二三技术有限公司}}
+\end{tabular}
+\begin{tabular}{@{}p{6cm}@{}}
+    AI算法工程师实习生
+\end{tabular}
+\hfill\textcolor{blue}{\textbf{2024.09 \textasciitilde{} 2024.12}}
+
+\par\noindent
+\textbf{项目介绍：}开发基于智能体协作的医疗决策平台，实现临床数据的自动化检索、逻辑规划与多维分析。 \\
+1）\textbf{RAG优化：}基于 \textbf{Milvus} 构建 Hybrid Search 系统，引入 \textbf{BGE-Reranker}解决医疗术语召回不精准问题；采用 \textbf{BM25} 结合稠密向量检索的双路召回机制，并针对长篇电子病历与医学指南设计了\textbf{语义感知切分（Semantic Chunking）}策略，大幅降低了由于上下文截断导致的深层语义丢失风险。 \\
+2）\textbf{Agent 开发（核心）：}利用 \textbf{LangGraph} 编排复杂的 \textbf{ReAct} 模式工作流，构建具备“规划-反思-执行”闭环的 \textbf{Multi-Agent} 体系；设计针对多源数据的逻辑路由，实现知识库及临床工具的高精度自动化调用。 \\
+3）\textbf{模型微调：}采用 \textbf{PEFT (QLoRA)} 实施指令增强，引入 \textbf{FlashAttention-2} 保证模型的推理稳定性。 \\
+\textbf{项目成果：}RAG 检索准确率提升至 \textbf{91\%}，Agent 任务成功率达 \textbf{94\%}，成功支撑 3 家三甲医院私有化部署。
+
+% ---------------------------------------------------------
+% 项目经历部分
+% ---------------------------------------------------------
+\section*{项目经历}
+\vspace{-0.5em}
+
+\noindent
+\begin{tabular}{@{}p{8cm}@{}} 
+    \textcolor{blue}{\textbf{Medical-Llama：开源中文医疗大模型}} 
+\end{tabular}
+\begin{tabular}{@{}p{6cm}@{}} 
+    项目负责人 
+\end{tabular}
+\hfill\textcolor{blue}{\textbf{2023.02 \textasciitilde{} 2023.08}}
+
+\par\noindent
+\textbf{项目介绍：}通过领域增强预训练与指令微调，构建高性能医疗垂直领域大模型。\\
+1）\textbf{全流程管线构建：}自建从 \textbf{增量预训练} 到 \textbf{SFT} 再到 \textbf{DPO} 的完整链路，主导千万级高质量医疗数据清洗；并设计基于启发式规则与大模型打分的双重过滤机制，有效剔除了低质量语料与隐私敏感数据。 \\
+2）\textbf{高效微调策略：}应用 \textbf{PEFT（LoRA）} 技术实现高效迭代，引入 \textbf{FlashAttention-2} 优化长文本处理性能。 \\
+3）\textbf{临床能力对齐：}针对医学严谨性与伦理准则，构建海量高质量医疗偏好对（\textbf{Preference Pairs}），利用 \textbf{DPO} 算法实施细粒度偏好对齐，通过动态调整差异惩罚项（\textbf{KL Penalty}）优化模型输出分布。\\
+\textbf{项目成果：}核心算法论文发表于 \href{https://papercopilot.com/paper-list/aaai-paper-list/aaai-2023-paper-list/}{\textbf{AAAI 2023 (1st Author)}}；项目在 \href{https://github.com/your-username/medical-llama}{\textbf{GitHub}} 获 6.2k+ Stars。
+
+\noindent
+\begin{tabular}{@{}p{8cm}@{}} 
+    \textcolor{blue}{\textbf{X-Agent：医疗多模态 Agent 决策系统}} 
+\end{tabular}
+\begin{tabular}{@{}p{6cm}@{}} 
+    核心开发 
+\end{tabular}
+\hfill\textcolor{blue}{\textbf{2024.01 \textasciitilde{} 2024.06}}
+
+\par\noindent
+\textbf{项目介绍：}基于智能体架构，整合医疗知识库与临床工具，实现端到端的自动化辅助诊断与多维数据分析。 \\
+1）\textbf{工作流编排：}利用 \textbf{LangGraph} 设计复杂的 \textbf{ReAct} 模式工作流；通过构建“主诊智能体”提出方案与“知识校验智能体”基于临床路径进行多轮博弈与共识生成机制，解决了复杂链路的逻辑断层与幻觉问题。\\
+2）\textbf{系统解耦与工具集成：}通过 \textbf{Dify} 实现业务逻辑高度解耦，集成外部医学计算器与自研 RAG 引擎；同时封装标准化 API 接口以支持多终端快速接入，大幅降低了系统的二次开发成本与各模块间的耦合度。 \\
+3）\textbf{工程化部署：}利用 \textbf{vLLM} 部署模型后端，结合 \textbf{Docker} 容器化技术完成私有化环境交付，优化响应延迟。 \\
+\textbf{项目成果：}研究成果发表于 \href{https://2024.aclweb.org/program/main_conference_papers/}{\textbf{ACL 2024 (1st Author)}}；项目在 \href{https://github.com/your-username/x-agent-med}{\textbf{GitHub}} 获 2.8k+ Stars。
+
+% ---------------------------------------------------------
+% 专业素养部分
+% ---------------------------------------------------------
+\section*{专业素养}
+\vspace{-0.5em}
+\begin{itemize}
+    \item \textbf{技术栈：}\textbf{PyTorch，Transformers，vLLM，DeepSpeed，TRL（DPO/PPO），PEFT，LoRA}，LangChain，LangGraph，Dify，Milvus，FAISS，Docker，Linux，Git，Python，C++。
+    \item \textbf{自我评价：}具备出色的逻辑思维与问题解决能力，能高效阅读并转化顶会前沿论文；工作自驱力强，能够在高压力环境下保持高效产出，具有良好的团队协作精神与沟通效率。
+\end{itemize}
+
+% 标记最后一页，供计算总页数使用
+\label{LastPage}
+\end{document}
